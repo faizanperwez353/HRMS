@@ -1,0 +1,79 @@
+.employee-appraisals-container {
+    padding: 1rem;
+}
+
+.page-header {
+    margin-bottom: 2.5rem;
+}
+
+.appraisals-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 800px;
+}
+
+.appraisal-event {
+    padding: 2.5rem;
+    position: relative;
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.period-badge {
+    padding: 0.4rem 1rem;
+    background: var(--primary);
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 700;
+}
+
+.rating-display i {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-left: 0.25rem;
+}
+
+.rating-display i.filled {
+    color: var(--warning);
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+.event-body .feedback-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.reviewer-info i {
+    color: var(--primary);
+}
+
+.reviewer-info strong {
+    color: white;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 0;
+    gap: 1.5rem;
+}

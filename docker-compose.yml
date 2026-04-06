@@ -15,5 +15,31 @@ services:
     volumes:
       - hrms-db-data:/var/lib/mysql
 
+  hrms-api:
+    build:
+      context: ./hrms_api
+      dockerfile: Dockerfile
+    container_name: hrms-api
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/hrms_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=hrms_user
+      - SPRING_DATASOURCE_PASSWORD=hrms_password
+
+  hrms-ui:
+    build:
+      context: ./hrms-ui
+      dockerfile: Dockerfile
+    container_name: hrms-ui
+    restart: always
+    ports:
+      - '80:80'
+    depends_on:
+      - hrms-api
+
 volumes:
   hrms-db-data:

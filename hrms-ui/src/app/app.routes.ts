@@ -44,6 +44,30 @@ export const routes: Routes = [
           { 
             path: 'projects/edit/:id', 
             loadComponent: () => import('./features/admin/project-management/project-detail/project-detail.component').then(m => m.ProjectDetailComponent) 
+          },
+          { 
+            path: 'salaries', 
+            loadComponent: () => import('./features/admin/salary-management/salary-list/salary-list.component').then(m => m.SalaryListComponent) 
+          },
+          { 
+            path: 'salaries/new', 
+            loadComponent: () => import('./features/admin/salary-management/salary-detail/salary-detail.component').then(m => m.SalaryDetailComponent) 
+          },
+          { 
+            path: 'salaries/edit/:id', 
+            loadComponent: () => import('./features/admin/salary-management/salary-detail/salary-detail.component').then(m => m.SalaryDetailComponent) 
+          },
+          { 
+            path: 'appraisals', 
+            loadComponent: () => import('./features/admin/appraisal-management/appraisal-list/appraisal-list.component').then(m => m.AppraisalListComponent) 
+          },
+          { 
+            path: 'appraisals/new', 
+            loadComponent: () => import('./features/admin/appraisal-management/appraisal-detail/appraisal-detail.component').then(m => m.AppraisalDetailComponent) 
+          },
+          { 
+            path: 'appraisals/edit/:id', 
+            loadComponent: () => import('./features/admin/appraisal-management/appraisal-detail/appraisal-detail.component').then(m => m.AppraisalDetailComponent) 
           }
         ]
       },
@@ -54,6 +78,14 @@ export const routes: Routes = [
           { 
             path: 'home', 
             loadComponent: () => import('./features/employee/home/home.component').then(m => m.HomeComponent) 
+          },
+          { 
+            path: 'salaries', 
+            loadComponent: () => import('./features/employee/salaries/salaries.component').then(m => m.SalariesComponent) 
+          },
+          { 
+            path: 'appraisals', 
+            loadComponent: () => import('./features/employee/appraisals/appraisals.component').then(m => m.AppraisalsComponent) 
           }
         ]
       }
