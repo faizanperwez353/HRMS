@@ -11,7 +11,7 @@
 
   <div class="projects-grid">
     <div class="project-card glass-card fade-in" *ngFor="let project of projects()">
-      <div class="card-status" [ngClass]="project.status?.toLowerCase()">
+      <div class="card-status" [ngClass]="project.status.toLowerCase()">
           {{project.status}}
       </div>
       <div class="project-info">
