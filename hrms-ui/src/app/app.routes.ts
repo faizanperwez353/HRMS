@@ -20,8 +20,31 @@ export const routes: Routes = [
           { 
             path: 'dashboard', 
             loadComponent: () => import('./features/admin/dashboard/dashboard.component').then(m => m.DashboardComponent) 
+          },
+          { 
+            path: 'employees', 
+            loadComponent: () => import('./features/admin/employee-management/employee-list/employee-list.component').then(m => m.EmployeeListComponent) 
+          },
+          { 
+            path: 'employees/new', 
+            loadComponent: () => import('./features/admin/employee-management/employee-detail/employee-detail.component').then(m => m.EmployeeDetailComponent) 
+          },
+          { 
+            path: 'employees/edit/:id', 
+            loadComponent: () => import('./features/admin/employee-management/employee-detail/employee-detail.component').then(m => m.EmployeeDetailComponent) 
+          },
+          { 
+            path: 'projects', 
+            loadComponent: () => import('./features/admin/project-management/project-list/project-list.component').then(m => m.ProjectListComponent) 
+          },
+          { 
+            path: 'projects/new', 
+            loadComponent: () => import('./features/admin/project-management/project-detail/project-detail.component').then(m => m.ProjectDetailComponent) 
+          },
+          { 
+            path: 'projects/edit/:id', 
+            loadComponent: () => import('./features/admin/project-management/project-detail/project-detail.component').then(m => m.ProjectDetailComponent) 
           }
-          // Additional admin routes will go here
         ]
       },
       {
@@ -32,7 +55,6 @@ export const routes: Routes = [
             path: 'home', 
             loadComponent: () => import('./features/employee/home/home.component').then(m => m.HomeComponent) 
           }
-          // Additional employee routes will go here
         ]
       }
     ]

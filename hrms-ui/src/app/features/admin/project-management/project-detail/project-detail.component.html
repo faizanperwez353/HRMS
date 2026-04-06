@@ -1,0 +1,62 @@
+<div class="project-detail-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">{{isEditMode() ? 'Edit Project' : 'Launch New Project'}}</h1>
+        <p class="text-muted">Define the project scope and timeline below.</p>
+    </div>
+    <div class="header-actions">
+        <button class="btn-secondary" routerLink="/admin/projects">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </button>
+    </div>
+  </div>
+
+  <div class="form-card glass-card">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="detail-form">
+      <div class="form-section">
+        <h3><i class="fas fa-rocket"></i> Project Overview</h3>
+        <div class="form-group full-width">
+          <label>Project Name</label>
+          <input type="text" formControlName="name" class="glass-effect" placeholder="e.g. Project Apollo">
+        </div>
+        <div class="form-group full-width" style="margin-top: 1.5rem;">
+          <label>Project Description</label>
+          <textarea formControlName="description" class="glass-effect" rows="4" placeholder="Briefly describe the project goals..."></textarea>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-section">
+        <h3><i class="fas fa-calendar-alt"></i> Timeline & Status</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" formControlName="startDate" class="glass-effect">
+          </div>
+          <div class="form-group">
+            <label>End Date</label>
+            <input type="date" formControlName="endDate" class="glass-effect">
+          </div>
+          <div class="form-group">
+            <label>Current Status</label>
+            <select formControlName="status" class="glass-effect">
+              <option value="Planned">Planned</option>
+              <option value="Active">Active</option>
+              <option value="Completed">Completed</option>
+              <option value="On Hold">On Hold</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="button" class="btn-ghost" routerLink="/admin/projects">Cancel</button>
+        <button type="submit" class="btn-primary" [disabled]="projectForm.invalid || loading()">
+          <i class="fas" [ngClass]="loading() ? 'fa-spinner fa-spin' : 'fa-save'"></i>
+          {{loading() ? 'Saving...' : (isEditMode() ? 'Update Project' : 'Create Project')}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
