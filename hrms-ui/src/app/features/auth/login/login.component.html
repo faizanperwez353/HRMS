@@ -1,0 +1,46 @@
+<div class="login-container">
+  <div class="login-card glass-effect fade-in">
+    <div class="login-header">
+      <div class="logo">
+        <i class="fas fa-microchip text-gradient" style="font-size: 2.5rem;"></i>
+      </div>
+      <h1 class="text-gradient">HRMS Portal</h1>
+      <p class="text-muted">Welcome back! Please login to your account.</p>
+    </div>
+
+    <form (submit)="onSubmit($event)" class="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <div class="input-wrapper">
+          <i class="fas fa-user"></i>
+          <input type="text" id="username" name="username" placeholder="Enter your username" [(ngModel)]="username" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" placeholder="••••••••" [(ngModel)]="password" required>
+        </div>
+      </div>
+
+      <div class="forgot-pwd">
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit" [disabled]="loading()" class="btn-login">
+        <span *ngIf="!loading()">Login <i class="fas fa-arrow-right"></i></span>
+        <span *ngIf="loading()"><i class="fas fa-spinner fa-spin"></i> Authenticating...</span>
+      </button>
+    </form>
+
+    <div *ngIf="errorMessage()" class="error-msg fade-in">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage() }}
+    </div>
+
+    <div class="login-footer">
+      <p>&copy; 2026 Antigravity HRMS. All rights reserved.</p>
+    </div>
+  </div>
+</div>

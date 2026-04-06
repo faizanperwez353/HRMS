@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: hrms-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: hrms_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: hrms_user
+      MYSQL_PASSWORD: hrms_password
+    ports:
+      - '3306:3306'
+    volumes:
+      - hrms-db-data:/var/lib/mysql
+
+volumes:
+  hrms-db-data:

@@ -1,0 +1,82 @@
+<div class="layout-container">
+  <!-- Sidebar -->
+  <aside class="sidebar glass-effect" [class.collapsed]="isSidebarCollapsed">
+    <div class="sidebar-header">
+      <i class="fas fa-microchip logo-icon text-gradient"></i>
+      <span class="brand-name" *ngIf="!isSidebarCollapsed">HRMS PRO</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <p class="section-title" *ngIf="!isSidebarCollapsed">MAIN</p>
+        <a routerLink="/admin/dashboard" routerLinkActive="active" *ngIf="isAdmin()">
+          <i class="fas fa-chart-pie"></i>
+          <span *ngIf="!isSidebarCollapsed">Dashboard</span>
+        </a>
+        <a routerLink="/employee/home" routerLinkActive="active" *ngIf="isEmployee()">
+          <i class="fas fa-home"></i>
+          <span *ngIf="!isSidebarCollapsed">My Portal</span>
+        </a>
+      </div>
+
+      <div class="nav-section" *ngIf="isAdmin()">
+        <p class="section-title" *ngIf="!isSidebarCollapsed">MANAGEMENT</p>
+        <a routerLink="/admin/employees" routerLinkActive="active">
+          <i class="fas fa-users"></i>
+          <span *ngIf="!isSidebarCollapsed">Employees</span>
+        </a>
+        <a routerLink="/admin/projects" routerLinkActive="active">
+          <i class="fas fa-project-diagram"></i>
+          <span *ngIf="!isSidebarCollapsed">Projects</span>
+        </a>
+        <a routerLink="/admin/salaries" routerLinkActive="active">
+          <i class="fas fa-wallet"></i>
+          <span *ngIf="!isSidebarCollapsed">Salaries</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn-toggle" (click)="toggleSidebar()">
+        <i class="fas" [ngClass]="isSidebarCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-shell">
+    <header class="top-navbar glass-effect">
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search anything...">
+      </div>
+
+      <div class="user-actions">
+        <div class="notification-bell">
+          <i class="fas fa-bell"></i>
+          <span class="badge">3</span>
+        </div>
+        
+        <div class="user-profile" (click)="isProfileMenuOpen = !isProfileMenuOpen">
+          <img src="https://ui-avatars.com/api/?name={{userName()}}&background=6366f1&color=fff" alt="User">
+          <div class="user-info" *ngIf="!isSidebarCollapsed">
+            <span class="name">{{userName()}}</span>
+            <span class="role">{{userRole()}}</span>
+          </div>
+          <i class="fas fa-chevron-down"></i>
+
+          <div class="profile-dropdown glass-effect" *ngIf="isProfileMenuOpen">
+            <a href="#"><i class="fas fa-user-circle"></i> Profile</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <hr>
+            <a (click)="logout()" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="content-area">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>

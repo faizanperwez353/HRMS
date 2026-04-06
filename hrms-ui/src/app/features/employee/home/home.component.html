@@ -1,0 +1,78 @@
+<div class="employee-container fade-in">
+  <div class="employee-header">
+    <div class="header-content">
+      <h1 class="text-gradient">Welcome, {{userName()}}</h1>
+      <p class="text-muted">Here is your professional overview for today.</p>
+    </div>
+    <div class="status-badge glass-effect">
+      <span class="dot pulse"></span> Active
+    </div>
+  </div>
+
+  <div class="employee-grid">
+    <div class="profile-card glass-card">
+        <div class="profile-header">
+            <img src="https://ui-avatars.com/api/?name={{userName()}}&background=6366f1&color=fff&size=128" alt="Profile">
+            <h2>{{userName()}}</h2>
+            <p class="role-text">Senior Software Engineer</p>
+        </div>
+        <hr class="divider">
+        <div class="profile-details">
+            <div class="detail-item">
+                <i class="fas fa-id-badge"></i>
+                <div>
+                    <label>Employee ID</label>
+                    <p>EMP-2026-084</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <label>Email Address</label>
+                    <p>{{userEmail()}}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-building"></i>
+                <div>
+                    <label>Department</label>
+                    <p>Technology</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-column">
+        <div class="tasks-overview glass-card">
+            <h3>My Active Projects</h3>
+            <div class="task-list">
+                <div class="task-item glass-effect">
+                    <div class="task-icon blue"><i class="fas fa-code"></i></div>
+                    <div class="task-info">
+                        <p class="task-title">Frontend Architecture Redesign</p>
+                        <p class="task-deadline">Deadline: 25 Apr 2026</p>
+                    </div>
+                </div>
+                <div class="task-item glass-effect">
+                    <div class="task-icon purple"><i class="fas fa-shield-halved"></i></div>
+                    <div class="task-info">
+                        <p class="task-title">Auth System Upgrade</p>
+                        <p class="task-deadline">Deadline: 12 May 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-actions glass-grid">
+            <div class="action-card glass-card">
+                <i class="fas fa-calendar-check"></i>
+                <p>Request Leave</p>
+            </div>
+            <div class="action-card glass-card">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <p>View Payslip</p>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
