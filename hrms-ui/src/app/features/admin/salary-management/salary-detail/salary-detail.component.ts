@@ -46,6 +46,7 @@ export class SalaryDetailComponent implements OnInit {
       bonus: [0, [Validators.required, Validators.min(0)]],
       deductions: [0, [Validators.required, Validators.min(0)]],
       paymentMonth: [this.getCurrentMonth(), [Validators.required]],
+      paymentDate: [new Date().toISOString().split('T')[0]],
       status: ['Pending', [Validators.required]]
     });
   }

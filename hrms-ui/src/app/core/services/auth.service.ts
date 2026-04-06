@@ -12,6 +12,14 @@ export class AuthService {
   // Use Angular Signals for state management
   currentUser = signal<User | null>(this.getUserFromStorage());
 
+  getToken(): string | null {
+    const user = this.currentUser();
+    console.log('[AuthService] Current user state in signal:', user);
+    const token = user ? user.token || null : null;
+    console.log('[AuthService] Retrieved token:', token ? 'Token exists' : 'Token is NULL');
+    return token;
+  }
+
   constructor(private http: HttpClient) {}
 
   login(credentials: any): Observable<AuthResponse> {
@@ -51,6 +59,21 @@ export class AuthService {
 
   private getUserFromStorage(): User | null {
     const stored = localStorage.getItem('hrms_user');
-    return stored ? JSON.parse(stored) : null;
+    if (!stored) return null;
+    
+    try {
+      const user = JSON.parse(stored);
+      // Ensure it's the new format with 'token' property
+      if (user && !user.token && user.accessToken) {
+        console.warn('AuthService: Detected legacy user format with accessToken. Cleaning up.');
+        localStorage.removeItem('hrms_user');
+        return null;
+      }
+      return user;
+    } catch (e) {
+      console.error('AuthService: Error parsing user from storage', e);
+      localStorage.removeItem('hrms_user');
+      return null;
+    }
   }
 }
