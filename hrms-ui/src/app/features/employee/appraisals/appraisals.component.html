@@ -1,0 +1,33 @@
+<div class="employee-appraisals-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">Performance Feedback</h1>
+        <p class="text-muted">Review your performance ratings and detailed management feedback.</p>
+    </div>
+  </div>
+
+  <div class="appraisals-timeline">
+    <div class="appraisal-event glass-card fade-in" *ngFor="let a of appraisals()">
+      <div class="event-header">
+          <div class="period-badge">{{a.period}}</div>
+          <div class="rating-display">
+              <i class="fas fa-star" *ngFor="let s of [1,2,3,4,5]" [class.filled]="s <= a.rating"></i>
+          </div>
+      </div>
+      
+      <div class="event-body">
+          <p class="feedback-text">{{a.feedback}}</p>
+          <div class="reviewer-info">
+              <i class="fas fa-user-tie"></i>
+              <span>Reviewed by <strong>{{a.reviewedBy}}</strong> on {{a.reviewDate | date}}</span>
+          </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="appraisals().length === 0" class="empty-state glass-card">
+        <i class="fas fa-comment-slash"></i>
+        <p>You have no recorded performance reviews yet.</p>
+    </div>
+  </div>
+</div>
