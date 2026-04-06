@@ -1,1 +1,1 @@
-# Human Resource Maqnagement System [HRMS]
+# Human Resource Management System [HRMS]
