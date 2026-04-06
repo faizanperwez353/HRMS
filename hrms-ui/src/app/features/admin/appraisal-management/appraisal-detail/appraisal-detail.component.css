@@ -1,0 +1,77 @@
+.appraisal-detail-container {
+    padding: 1rem;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.form-card {
+    padding: 3rem;
+    max-width: 850px;
+}
+
+.form-section h3 {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.star-rating-input {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+}
+
+.star-rating-input i {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-dim);
+    transition: all 0.2s;
+}
+
+.star-rating-input i:hover, 
+.star-rating-input i.active {
+    color: var(--warning);
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid var(--glass-border);
+    margin: 2.5rem 0;
+}
+
+textarea.glass-effect {
+    resize: none;
+    line-height: 1.6;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}

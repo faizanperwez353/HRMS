@@ -1,0 +1,50 @@
+<div class="employee-salaries-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">My Payslips</h1>
+        <p class="text-muted">A history of your earnings, bonuses, and tax deductions.</p>
+    </div>
+  </div>
+
+  <div class="salaries-grid">
+    <div class="payslip-card glass-card fade-in" *ngFor="let s of salaries()">
+      <div class="card-header">
+          <div class="month-info">
+              <i class="fas fa-calendar-check"></i>
+              <span>{{s.paymentMonth}}</span>
+          </div>
+          <span class="status-badge" [ngClass]="s.status.toLowerCase()">{{s.status}}</span>
+      </div>
+
+      <div class="amount-summary">
+          <p class="label">Net Payable</p>
+          <h2 class="text-gradient">{{(s.basicSalary + s.bonus - s.deductions) | currency}}</h2>
+      </div>
+
+      <div class="payslip-details">
+          <div class="detail-row">
+              <span>Basic Salary</span>
+              <span>{{s.basicSalary | currency}}</span>
+          </div>
+          <div class="detail-row">
+              <span>Bonus</span>
+              <span class="text-success">+ {{s.bonus | currency}}</span>
+          </div>
+          <div class="detail-row">
+              <span>Deductions</span>
+              <span class="text-danger">- {{s.deductions | currency}}</span>
+          </div>
+      </div>
+
+      <button class="btn-download-glass">
+          <i class="fas fa-file-pdf"></i> Download PDF
+      </button>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="salaries().length === 0" class="empty-state glass-card">
+        <i class="fas fa-receipt"></i>
+        <p>No payslips generated for your account yet.</p>
+    </div>
+  </div>
+</div>

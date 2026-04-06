@@ -1,0 +1,101 @@
+.employee-salaries-container {
+    padding: 1rem;
+}
+
+.page-header {
+    margin-bottom: 2.5rem;
+}
+
+.salaries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.payslip-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.month-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.month-info i {
+    color: var(--primary);
+}
+
+.status-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.status-badge.paid { color: var(--success); }
+.status-badge.pending { color: var(--warning); }
+
+.amount-summary {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.amount-summary .label {
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+}
+
+.amount-summary h2 {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+.payslip-details {
+    margin-bottom: 2rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.text-success { color: var(--success); }
+.text-danger { color: #fca5a5; }
+
+.btn-download-glass {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: white;
+    cursor: pointer;
+}
+
+.btn-download-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 0;
+    gap: 1.5rem;
+}

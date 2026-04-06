@@ -1,0 +1,63 @@
+<div class="appraisal-detail-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">{{isEditMode() ? 'Edit Appraisal' : 'Record New Appraisal'}}</h1>
+        <p class="text-muted">Document performance metrics, feedback, and ratings for staff reviews.</p>
+    </div>
+    <div class="header-actions">
+        <button class="btn-secondary" routerLink="/admin/appraisals">
+            <i class="fas fa-arrow-left"></i> Back to Reviews
+        </button>
+    </div>
+  </div>
+
+  <div class="form-card glass-card">
+    <form [formGroup]="appraisalForm" (ngSubmit)="onSubmit()" class="detail-form">
+      <div class="form-section">
+        <h3><i class="fas fa-bullseye"></i> Evaluation Details</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Select Employee</label>
+            <select formControlName="employeeId" class="glass-effect">
+              <option [value]="null">Select Employee</option>
+              <option *ngFor="let emp of employees()" [value]="emp.id">{{emp.firstName}} {{emp.lastName}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Review Period</label>
+            <input type="text" formControlName="period" class="glass-effect" placeholder="e.g. Q1 2026">
+          </div>
+          <div class="form-group">
+            <label>Performance Rating (1-5)</label>
+            <div class="star-rating-input">
+                <i class="fas fa-star" *ngFor="let s of [1,2,3,4,5]" 
+                   [class.active]="s <= (appraisalForm.get('rating')?.value || 0)"
+                   (click)="setRating(s)"></i>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Reviewed By</label>
+            <input type="text" formControlName="reviewedBy" class="glass-effect" placeholder="Manager Name">
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-section">
+        <h3><i class="fas fa-comment-dots"></i> Detailed Feedback</h3>
+        <div class="form-group full-width">
+          <textarea formControlName="feedback" class="glass-effect" rows="6" placeholder="Provide detailed feedback on strengths and areas for improvement..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="button" class="btn-ghost" routerLink="/admin/appraisals">Cancel</button>
+        <button type="submit" class="btn-primary" [disabled]="appraisalForm.invalid || loading()">
+          <i class="fas" [ngClass]="loading() ? 'fa-spinner fa-spin' : 'fa-save'"></i>
+          {{loading() ? 'Saving...' : (isEditMode() ? 'Update Appraisal' : 'Submit Review')}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

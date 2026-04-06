@@ -1,0 +1,47 @@
+<div class="appraisal-list-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">Performance Reviews</h1>
+        <p class="text-muted">Track and evaluate employee performance metrics and feedback.</p>
+    </div>
+    <button class="btn-primary" routerLink="/admin/appraisals/new">
+        <i class="fas fa-plus"></i> New Appraisal
+    </button>
+  </div>
+
+  <div class="table-card glass-card">
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Rating</th>
+                    <th>Period</th>
+                    <th>Reviewed By</th>
+                    <th>Review Date</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of appraisals()">
+                    <td>{{a.employeeName}}</td>
+                    <td>
+                        <div class="rating-stars">
+                            <i class="fas fa-star" *ngFor="let s of [1,2,3,4,5]" [class.filled]="s <= a.rating"></i>
+                        </div>
+                    </td>
+                    <td>{{a.period}}</td>
+                    <td>{{a.reviewedBy}}</td>
+                    <td>{{a.reviewDate | date}}</td>
+                    <td class="text-center">
+                        <div class="action-buttons">
+                            <button class="btn-icon edit" (click)="editAppraisal(a.id!)"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon delete" (click)="deleteAppraisal(a.id!)"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
