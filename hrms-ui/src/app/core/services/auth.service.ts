@@ -22,7 +22,7 @@ export class AuthService {
           username: response.username,
           email: response.email,
           roles: response.roles,
-          token: response.accessToken
+          token: response.token
         };
         this.saveUser(user);
         this.currentUser.set(user);
