@@ -1,0 +1,111 @@
+<div class="employee-detail-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">{{isEditMode() ? 'Edit Employee' : 'Add New Employee'}}</h1>
+        <p class="text-muted">Enter the details below to {{isEditMode() ? 'update' : 'register'}} a staff member.</p>
+    </div>
+    <div class="header-actions">
+        <button class="btn-secondary" routerLink="/admin/employees">
+            <i class="fas fa-arrow-left"></i> Back to List
+        </button>
+    </div>
+  </div>
+
+  <div class="form-card glass-card">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="detail-form">
+      <!-- Personal Information -->
+      <div class="form-section">
+        <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" formControlName="firstName" class="glass-effect" placeholder="e.g. John">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" formControlName="lastName" class="glass-effect" placeholder="e.g. Doe">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" formControlName="email" class="glass-effect" placeholder="john.doe@company.com">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" formControlName="phone" class="glass-effect" placeholder="+1 (555) 000-0000">
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Employment Details -->
+      <div class="form-section">
+        <h3><i class="fas fa-briefcase"></i> Employment Details</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Designation</label>
+            <input type="text" formControlName="designation" class="glass-effect" placeholder="e.g. Software Engineer">
+          </div>
+          <div class="form-group">
+            <label>Department</label>
+            <select formControlName="departmentId" class="glass-effect">
+              <option [value]="null">Select Department</option>
+              <option [value]="1">Technology</option>
+              <option [value]="2">Human Resources</option>
+              <option [value]="3">Marketing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Joining Date</label>
+            <input type="date" formControlName="joiningDate" class="glass-effect">
+          </div>
+          <div class="form-group">
+            <label>Employment Type</label>
+            <select formControlName="employmentType" class="glass-effect">
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Contract">Contract</option>
+              <option value="Intern">Intern</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Address & Status -->
+      <div class="form-section">
+        <h3><i class="fas fa-map-marker-alt"></i> Additional Info</h3>
+        <div class="form-grid full-width">
+            <div class="form-group">
+                <label>Residential Address</label>
+                <textarea formControlName="address" class="glass-effect" rows="3" placeholder="Street, City, State, ZIP"></textarea>
+            </div>
+        </div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Status</label>
+                <div class="status-options">
+                    <label class="radio-label">
+                        <input type="radio" formControlName="status" value="Active"> 
+                        <span class="custom-radio"></span> Active
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" formControlName="status" value="On Leave"> 
+                        <span class="custom-radio"></span> On Leave
+                    </label>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="button" class="btn-ghost" routerLink="/admin/employees">Cancel</button>
+        <button type="submit" class="btn-primary" [disabled]="employeeForm.invalid || loading()">
+          <i class="fas" [ngClass]="loading() ? 'fa-spinner fa-spin' : 'fa-save'"></i>
+          {{loading() ? 'Saving...' : (isEditMode() ? 'Update Employee' : 'Register Employee')}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

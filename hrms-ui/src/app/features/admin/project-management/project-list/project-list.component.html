@@ -1,0 +1,48 @@
+<div class="project-list-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">Project Portfolio</h1>
+        <p class="text-muted">An overview of all ongoing and completed projects.</p>
+    </div>
+    <button class="btn-primary" routerLink="/admin/projects/new">
+        <i class="fas fa-plus"></i> Launch New Project
+    </button>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card glass-card fade-in" *ngFor="let project of projects()">
+      <div class="card-status" [ngClass]="project.status?.toLowerCase()">
+          {{project.status}}
+      </div>
+      <div class="project-info">
+          <h3>{{project.name}}</h3>
+          <p class="description">{{project.description | slice:0:100}}{{project.description!.length > 100 ? '...' : ''}}</p>
+      </div>
+
+      <div class="project-meta">
+          <div class="meta-item">
+              <i class="fas fa-calendar-day"></i>
+              <span>Starts: {{project.startDate | date}}</span>
+          </div>
+          <div class="meta-item">
+              <i class="fas fa-flag-checkered"></i>
+              <span>Ends: {{project.endDate | date}}</span>
+          </div>
+      </div>
+
+      <div class="card-footer">
+          <div class="actions">
+              <button class="btn-icon edit" (click)="editProject(project.id!)"><i class="fas fa-edit"></i></button>
+              <button class="btn-icon delete" (click)="deleteProject(project.id!)"><i class="fas fa-trash-alt"></i></button>
+          </div>
+          <span class="project-id">ID: PRJ-{{project.id}}</span>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="projects().length === 0" class="empty-state glass-card">
+        <i class="fas fa-diagram-project"></i>
+        <p>No projects found. Launch your first project today!</p>
+    </div>
+  </div>
+</div>
