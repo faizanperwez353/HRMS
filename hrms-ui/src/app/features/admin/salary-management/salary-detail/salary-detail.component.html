@@ -1,0 +1,90 @@
+<div class="salary-detail-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">{{isEditMode() ? 'Edit Payment' : 'Generate New Payment'}}</h1>
+        <p class="text-muted">Process staff salary, bonuses, and deductions for the current period.</p>
+    </div>
+    <div class="header-actions">
+        <button class="btn-secondary" routerLink="/admin/salaries">
+            <i class="fas fa-arrow-left"></i> Back to Payroll
+        </button>
+    </div>
+  </div>
+
+  <div class="form-card glass-card">
+    <form [formGroup]="salaryForm" (ngSubmit)="onSubmit()" class="detail-form">
+      <div class="form-section">
+        <h3><i class="fas fa-money-check-dollar"></i> Basic Information</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Select Employee</label>
+            <select formControlName="employeeId" class="glass-effect">
+              <option [value]="null">Select Employee</option>
+              <option *ngFor="let emp of employees()" [value]="emp.id">{{emp.firstName}} {{emp.lastName}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Payment Month</label>
+            <input type="text" formControlName="paymentMonth" class="glass-effect" placeholder="e.g. October 2026">
+          </div>
+          <div class="form-group">
+            <label>Basic Salary ($)</label>
+            <input type="number" formControlName="basicSalary" class="glass-effect" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select formControlName="status" class="glass-effect">
+                <option value="Pending">Pending</option>
+                <option value="Processing">Processing</option>
+                <option value="Paid">Paid</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-section">
+        <h3><i class="fas fa-plus-minus"></i> Adjustments</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Bonus ($)</label>
+            <input type="number" formControlName="bonus" class="glass-effect" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label>Deductions ($)</label>
+            <input type="number" formControlName="deductions" class="glass-effect" placeholder="0.00">
+          </div>
+        </div>
+      </div>
+
+      <div class="net-summary glass-effect">
+          <div class="summary-item">
+              <span>Basic Salary</span>
+              <span>{{salaryForm.get('basicSalary')?.value | currency}}</span>
+          </div>
+          <div class="summary-item">
+              <span>Bonus</span>
+              <span class="text-success">+ {{salaryForm.get('bonus')?.value | currency}}</span>
+          </div>
+          <div class="summary-item">
+              <span>Deductions</span>
+              <span class="text-danger">- {{salaryForm.get('deductions')?.value | currency}}</span>
+          </div>
+          <hr>
+          <div class="summary-item total">
+              <span>Net Payable</span>
+              <span class="text-gradient">{{(salaryForm.get('basicSalary')?.value + salaryForm.get('bonus')?.value - salaryForm.get('deductions')?.value) | currency}}</span>
+          </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="button" class="btn-ghost" routerLink="/admin/salaries">Cancel</button>
+        <button type="submit" class="btn-primary" [disabled]="salaryForm.invalid || loading()">
+          <i class="fas" [ngClass]="loading() ? 'fa-spinner fa-spin' : 'fa-save'"></i>
+          {{loading() ? 'Processing...' : (isEditMode() ? 'Update Payment' : 'Process Payment')}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

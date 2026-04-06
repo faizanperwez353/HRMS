@@ -1,0 +1,66 @@
+<div class="salary-list-container fade-in">
+  <div class="page-header">
+    <div class="header-text">
+        <h1 class="text-gradient">Payroll Management</h1>
+        <p class="text-muted">Monitor and process monthly staff salaries and bonuses.</p>
+    </div>
+    <button class="btn-primary" routerLink="/admin/salaries/new">
+        <i class="fas fa-plus"></i> Generate Payment
+    </button>
+  </div>
+
+  <div class="table-card glass-card">
+    <div class="table-header">
+        <div class="search-box glass-effect">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search by name or month..." [(ngModel)]="searchTerm" (input)="filterSalaries()">
+        </div>
+        <div class="filters">
+            <select class="glass-effect" [(ngModel)]="selectedStatus" (change)="filterSalaries()">
+                <option value="">All Statuses</option>
+                <option value="Paid">Paid</option>
+                <option value="Pending">Pending</option>
+                <option value="Processing">Processing</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Basic Salary</th>
+                    <th>Bonus</th>
+                    <th>Deductions</th>
+                    <th>Net Amount</th>
+                    <th>Month</th>
+                    <th>Status</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of filteredSalaries()">
+                    <td>{{s.employeeName}}</td>
+                    <td>{{s.basicSalary | currency}}</td>
+                    <td>{{s.bonus | currency}}</td>
+                    <td>{{s.deductions | currency}}</td>
+                    <td><strong>{{(s.basicSalary + s.bonus - s.deductions) | currency}}</strong></td>
+                    <td>{{s.paymentMonth}}</td>
+                    <td>
+                        <span class="status-pill" [ngClass]="s.status.toLowerCase()">
+                            {{s.status}}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <div class="action-buttons">
+                            <button class="btn-icon edit" (click)="editSalary(s.id!)"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon delete" (click)="deleteSalary(s.id!)"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>

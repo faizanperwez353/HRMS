@@ -1,0 +1,122 @@
+.salary-list-container {
+    padding: 1rem;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.header-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.btn-primary {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Table styling similar to employee list */
+.table-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.table-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 320px;
+}
+
+.search-box i {
+    color: var(--text-dim);
+    margin-right: 0.75rem;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+}
+
+.filters select {
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-md);
+    color: white;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid var(--glass-border);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--glass-border);
+}
+
+tbody td {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.875rem;
+}
+
+.status-pill {
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-pill.paid { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.2); }
+.status-pill.pending { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.2); }
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+}
+
+.btn-icon.edit:hover { color: var(--primary); }
+.btn-icon.delete:hover { color: var(--danger); }
