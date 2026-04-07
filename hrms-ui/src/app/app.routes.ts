@@ -4,8 +4,8 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { 
-    path: 'login', 
+  {
+    path: 'login',
     loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent)
   },
   {
@@ -17,57 +17,61 @@ export const routes: Routes = [
         path: 'admin',
         data: { role: 'ROLE_ADMIN' },
         children: [
-          { 
-            path: 'dashboard', 
-            loadComponent: () => import('./features/admin/dashboard/dashboard.component').then(m => m.DashboardComponent) 
+          {
+            path: 'dashboard',
+            loadComponent: () => import('./features/admin/dashboard/dashboard.component').then(m => m.DashboardComponent)
           },
-          { 
-            path: 'employees', 
-            loadComponent: () => import('./features/admin/employee-management/employee-list/employee-list.component').then(m => m.EmployeeListComponent) 
+          {
+            path: 'employees',
+            loadComponent: () => import('./features/admin/employee-management/employee-list/employee-list.component').then(m => m.EmployeeListComponent)
           },
-          { 
-            path: 'employees/new', 
-            loadComponent: () => import('./features/admin/employee-management/employee-detail/employee-detail.component').then(m => m.EmployeeDetailComponent) 
+          {
+            path: 'employees/new',
+            loadComponent: () => import('./features/admin/employee-management/employee-detail/employee-detail.component').then(m => m.EmployeeDetailComponent)
           },
-          { 
-            path: 'employees/edit/:id', 
-            loadComponent: () => import('./features/admin/employee-management/employee-detail/employee-detail.component').then(m => m.EmployeeDetailComponent) 
+          {
+            path: 'employees/edit/:id',
+            loadComponent: () => import('./features/admin/employee-management/employee-detail/employee-detail.component').then(m => m.EmployeeDetailComponent)
           },
-          { 
-            path: 'projects', 
-            loadComponent: () => import('./features/admin/project-management/project-list/project-list.component').then(m => m.ProjectListComponent) 
+          {
+            path: 'projects',
+            loadComponent: () => import('./features/admin/project-management/project-list/project-list.component').then(m => m.ProjectListComponent)
           },
-          { 
-            path: 'projects/new', 
-            loadComponent: () => import('./features/admin/project-management/project-detail/project-detail.component').then(m => m.ProjectDetailComponent) 
+          {
+            path: 'projects/new',
+            loadComponent: () => import('./features/admin/project-management/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
           },
-          { 
-            path: 'projects/edit/:id', 
-            loadComponent: () => import('./features/admin/project-management/project-detail/project-detail.component').then(m => m.ProjectDetailComponent) 
+          {
+            path: 'projects/edit/:id',
+            loadComponent: () => import('./features/admin/project-management/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
           },
-          { 
-            path: 'salaries', 
-            loadComponent: () => import('./features/admin/salary-management/salary-list/salary-list.component').then(m => m.SalaryListComponent) 
+          {
+            path: 'salaries',
+            loadComponent: () => import('./features/admin/salary-management/salary-list/salary-list.component').then(m => m.SalaryListComponent)
           },
-          { 
-            path: 'salaries/new', 
-            loadComponent: () => import('./features/admin/salary-management/salary-detail/salary-detail.component').then(m => m.SalaryDetailComponent) 
+          {
+            path: 'salaries/new',
+            loadComponent: () => import('./features/admin/salary-management/salary-detail/salary-detail.component').then(m => m.SalaryDetailComponent)
           },
-          { 
-            path: 'salaries/edit/:id', 
-            loadComponent: () => import('./features/admin/salary-management/salary-detail/salary-detail.component').then(m => m.SalaryDetailComponent) 
+          {
+            path: 'salaries/edit/:id',
+            loadComponent: () => import('./features/admin/salary-management/salary-detail/salary-detail.component').then(m => m.SalaryDetailComponent)
           },
-          { 
-            path: 'appraisals', 
-            loadComponent: () => import('./features/admin/appraisal-management/appraisal-list/appraisal-list.component').then(m => m.AppraisalListComponent) 
+          {
+            path: 'appraisals',
+            loadComponent: () => import('./features/admin/appraisal-management/appraisal-list/appraisal-list.component').then(m => m.AppraisalListComponent)
           },
-          { 
-            path: 'appraisals/new', 
-            loadComponent: () => import('./features/admin/appraisal-management/appraisal-detail/appraisal-detail.component').then(m => m.AppraisalDetailComponent) 
+          {
+            path: 'appraisals/new',
+            loadComponent: () => import('./features/admin/appraisal-management/appraisal-detail/appraisal-detail.component').then(m => m.AppraisalDetailComponent)
           },
-          { 
-            path: 'appraisals/edit/:id', 
-            loadComponent: () => import('./features/admin/appraisal-management/appraisal-detail/appraisal-detail.component').then(m => m.AppraisalDetailComponent) 
+          {
+            path: 'appraisals/edit/:id',
+            loadComponent: () => import('./features/admin/appraisal-management/appraisal-detail/appraisal-detail.component').then(m => m.AppraisalDetailComponent)
+          },
+          {
+            path: 'leaves',
+            loadComponent: () => import('./features/admin/leaves/leaves.component').then(m => m.LeavesComponent)
           }
         ]
       },
@@ -75,17 +79,25 @@ export const routes: Routes = [
         path: 'employee',
         data: { role: 'ROLE_EMPLOYEE' },
         children: [
-          { 
-            path: 'home', 
-            loadComponent: () => import('./features/employee/home/home.component').then(m => m.HomeComponent) 
+          {
+            path: 'home',
+            loadComponent: () => import('./features/employee/home/home.component').then(m => m.HomeComponent)
           },
-          { 
-            path: 'salaries', 
-            loadComponent: () => import('./features/employee/salaries/salaries.component').then(m => m.SalariesComponent) 
+          {
+            path: 'salaries',
+            loadComponent: () => import('./features/employee/salaries/salaries.component').then(m => m.SalariesComponent)
           },
-          { 
-            path: 'appraisals', 
-            loadComponent: () => import('./features/employee/appraisals/appraisals.component').then(m => m.AppraisalsComponent) 
+          {
+            path: 'appraisals',
+            loadComponent: () => import('./features/employee/appraisals/appraisals.component').then(m => m.AppraisalsComponent)
+          },
+          {
+            path: 'leaves',
+            loadComponent: () => import('./features/employee/leaves/leaves.component').then(m => m.LeavesComponent)
+          },
+          {
+            path: 'attendance',
+            loadComponent: () => import('./features/employee/attendance/attendance.component').then(m => m.AttendanceComponent)
           }
         ]
       }

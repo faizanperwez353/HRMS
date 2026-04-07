@@ -35,11 +35,19 @@ public class DataSeeder implements CommandLineRunner {
     }
 
     private void seedRoles() {
-        if (roleRepository.count() == 0) {
+        if (roleRepository.findByName(ERole.ROLE_EMPLOYEE).isEmpty()) {
             roleRepository.save(new Role(ERole.ROLE_EMPLOYEE));
-            roleRepository.save(new Role(ERole.ROLE_ADMIN));
-            logger.info("✅ Roles seeded: ROLE_EMPLOYEE, ROLE_ADMIN");
         }
+        if (roleRepository.findByName(ERole.ROLE_ADMIN).isEmpty()) {
+            roleRepository.save(new Role(ERole.ROLE_ADMIN));
+        }
+        if (roleRepository.findByName(ERole.ROLE_HR).isEmpty()) {
+            roleRepository.save(new Role(ERole.ROLE_HR));
+        }
+        if (roleRepository.findByName(ERole.ROLE_MANAGER).isEmpty()) {
+            roleRepository.save(new Role(ERole.ROLE_MANAGER));
+        }
+        logger.info("✅ Roles verified/seeded: EMPLOYEE, ADMIN, HR, MANAGER");
     }
 
     private void seedDepartments() {
