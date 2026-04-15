@@ -1,1 +1,12 @@
-<p>leaves works!</p>
+<table>
+    <tr *ngFor="let l of leaves">
+        <td>{{l.employee.name}}</td>
+        <td>{{l.leaveType}}</td>
+        <td>{{l.status}}</td>
+
+        <td>
+            <button (click)="approve(l.id)">Approve</button>
+            <button (click)="reject(l.id)">Reject</button>
+        </td>
+    </tr>
+</table>

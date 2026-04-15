@@ -16,7 +16,8 @@ import java.util.List;
 @RequestMapping("/api/leaves")
 public class LeaveRequestController {
 
-    @Autowired private LeaveRequestService leaveService;
+    @Autowired
+    private LeaveRequestService leaveService;
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN') or hasRole('HR') or hasRole('MANAGER')")
@@ -25,14 +26,16 @@ public class LeaveRequestController {
     }
 
     @GetMapping("/my")
-    @PreAuthorize("hasRole('EMPLOYEE') or hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('EMPLOYEE') or hasRole('ADMIN')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<LeaveRequestDTO>> getMyLeaves(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(leaveService.getMyLeaves(userDetails.getId()));
     }
 
     @PostMapping
     @PreAuthorize("hasRole('EMPLOYEE') or hasRole('ADMIN')")
-    public ResponseEntity<LeaveRequestDTO> applyLeave(@RequestBody LeaveRequestDTO dto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<LeaveRequestDTO> applyLeave(@RequestBody LeaveRequestDTO dto,
+            @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(leaveService.applyLeave(dto, userDetails.getId()));
     }
 

@@ -20,10 +20,9 @@ export class LeaveRequestService {
     return this.http.get<LeaveRequest[]>(`${this.apiUrl}/my`);
   }
 
-  applyLeave(leave: Partial<LeaveRequest>): Observable<LeaveRequest> {
-    return this.http.post<LeaveRequest>(this.apiUrl, leave);
+  applyLeave(data: any) {
+    return this.http.post(`${this.apiUrl}`, data);
   }
-
   approveLeave(id: number): Observable<LeaveRequest> {
     return this.http.put<LeaveRequest>(`${this.apiUrl}/${id}/approve`, {});
   }

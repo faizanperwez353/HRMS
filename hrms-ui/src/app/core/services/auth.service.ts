@@ -8,19 +8,13 @@ import { AuthResponse, User } from '../../shared/models/user.model';
 })
 export class AuthService {
   private readonly apiUrl = 'http://localhost:8080/api/auth';
-  
-  // Use Angular Signals for state management
   currentUser = signal<User | null>(this.getUserFromStorage());
 
   getToken(): string | null {
-    const user = this.currentUser();
-    console.log('[AuthService] Current user state in signal:', user);
-    const token = user ? user.token || null : null;
-    console.log('[AuthService] Retrieved token:', token ? 'Token exists' : 'Token is NULL');
-    return token;
+    return this.currentUser()?.token ?? null;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(credentials: any): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/signin`, credentials).pipe(
@@ -44,13 +38,22 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    const user = this.currentUser();
-    return !!user?.roles.includes('ROLE_ADMIN');
+    return this.hasRole('ROLE_ADMIN') || this.hasRole('ADMIN');
   }
 
   isEmployee(): boolean {
-    const user = this.currentUser();
-    return !!user?.roles.includes('ROLE_EMPLOYEE');
+    return this.hasRole('ROLE_EMPLOYEE') || this.hasRole('EMPLOYEE');
+  }
+  getUserId(): number | null {
+    return this.currentUser()?.id || null;
+  }
+
+  getUserRoles(): string[] {
+    return this.currentUser()?.roles || [];
+  }
+
+  hasRole(role: string): boolean {
+    return this.getUserRoles().includes(role);
   }
 
   private saveUser(user: User): void {
@@ -60,7 +63,7 @@ export class AuthService {
   private getUserFromStorage(): User | null {
     const stored = localStorage.getItem('hrms_user');
     if (!stored) return null;
-    
+
     try {
       const user = JSON.parse(stored);
       // Ensure it's the new format with 'token' property
