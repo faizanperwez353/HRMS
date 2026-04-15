@@ -45,7 +45,7 @@
 }
 
 .nav-section {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .section-title {
@@ -65,7 +65,7 @@
   color: var(--text-muted);
   text-decoration: none;
   border-radius: var(--radius-md);
-  margin-bottom: 0.25rem;
+  margin-bottom: .6rem;
   transition: all 0.2s ease;
   white-space: nowrap;
 }
@@ -115,7 +115,7 @@
   flex-direction: column;
 }
 
-.sidebar.collapsed + .main-shell {
+.sidebar.collapsed+.main-shell {
   margin-left: 80px;
 }
 
@@ -231,8 +231,15 @@
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .profile-dropdown a {
