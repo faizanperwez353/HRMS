@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Appraisal } from '../../shared/models/appraisal.model';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppraisalService {
-  private readonly apiUrl = 'http://localhost:8080/api/appraisals';
+  private readonly apiUrl = `${environment.apiUrl}/appraisals`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Appraisal[]> {
     return this.http.get<Appraisal[]>(this.apiUrl);

@@ -3,26 +3,27 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from '../../shared/models/employee.model';
 import { AuthService } from './auth.service';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private readonly apiUrl = 'http://localhost:8080/api/employees';
+  private readonly apiUrl = `${environment.apiUrl}/employees`;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ) {}
+  ) { }
 
   private getHeaders(): HttpHeaders {
     const token = this.authService.getToken();
     let headers = new HttpHeaders();
     if (token) {
-        console.log('[EmployeeService] Adding manual Authorization header: Token exists');
-        headers = headers.set('Authorization', `Bearer ${token}`);
+      console.log('[EmployeeService] Adding manual Authorization header: Token exists');
+      headers = headers.set('Authorization', `Bearer ${token}`);
     } else {
-        console.warn('[EmployeeService] CANNOT add Authorization header: Token is missing!');
+      console.warn('[EmployeeService] CANNOT add Authorization header: Token is missing!');
     }
     return headers;
   }

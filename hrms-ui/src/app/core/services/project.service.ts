@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Project } from '../../shared/models/employee.model'; // Assuming Project is in employee.model.ts or project.model.ts
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  private readonly apiUrl = 'http://localhost:8080/api/projects';
+  private readonly apiUrl = `${environment.apiUrl}/projects`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Project[]> {
     return this.http.get<Project[]>(this.apiUrl);

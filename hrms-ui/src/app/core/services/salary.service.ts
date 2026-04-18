@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Salary } from '../../shared/models/salary.model';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SalaryService {
-  private readonly apiUrl = 'http://localhost:8080/api/salaries';
+  private readonly apiUrl = `${environment.apiUrl}/salaries`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Salary[]> {
     return this.http.get<Salary[]>(this.apiUrl);
