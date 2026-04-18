@@ -58,7 +58,8 @@ public class WebSecurityConfig {
         configuration.setAllowedOrigins(List.of(
                 "http://127.0.0.1",
                 "http://localhost:4200",
-                "https://hrms-portal-faizan.vercel.app"));
+                "https://hrms-portal-faizan.vercel.app",
+                "https://hrms-faizan.vercel.app"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With", "Accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
         configuration.setExposedHeaders(List.of("Authorization", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
