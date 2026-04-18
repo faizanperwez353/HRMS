@@ -1,5 +1,5 @@
 <table>
-    <tr *ngFor="let l of leaves">
+   <tr *ngFor="let l of leaves || []">
         <td>{{l.employee.name}}</td>
         <td>{{l.leaveType}}</td>
         <td>{{l.status}}</td>

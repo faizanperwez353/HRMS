@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
 import { LeaveRequestService } from "../../../core/services/leave-request.service";
 
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-manage-leaves',
   templateUrl: './leaves.html',
   standalone: true,
+  imports: [CommonModule],
 })
 export class ManageLeavesComponent {
 
