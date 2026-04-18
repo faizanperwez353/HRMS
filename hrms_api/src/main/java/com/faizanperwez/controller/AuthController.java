@@ -18,8 +18,16 @@ public class AuthController {
     @Autowired AuthService authService;
 
     @PostMapping("/signin")
-    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.ok(authService.login(loginRequest));
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        try {
+            return ResponseEntity.ok(authService.login(loginRequest));
+        } catch (org.springframework.security.core.AuthenticationException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(401).body(new MessageResponse("Authentication Failed: " + e.getMessage()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(new MessageResponse("Internal System Error: " + e.getMessage()));
+        }
     }
 
     @PostMapping("/signup")
